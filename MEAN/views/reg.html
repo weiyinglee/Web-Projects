@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <title>Register Page</title>
+</head>
+<body ng-controller="regCtrl">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Little Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/login">Log in</a></li>
+                    <li class="active"><a href="/reg">Register<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <form ng-submit="regUser()" method="post">
+            <div class="form-group">
+                <label for="input_name">New Username</label>
+                <input type="text" ng-model="regName" name="user_name" class="form-control" id="input_name" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="input_pw">New Password</label>
+                <input type="password" ng-model="regPw" name="user_pw" class="form-control" id="input_pw" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="input_pw2">Re-Type Password</label>
+                <input type="password" ng-model="confirmPw" class="form-control" id="input_pw2" placeholder="Re-Type Password">
+            </div>
+            <div class="form-group">
+                <span style="color: red;" ng-cloak>{{ errorMsg }}</span>
+            </div>
+            <button type="submit" ng-disabled="btnDisabled()" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="/javascripts/myApp.js"></script>
+    <script src="/javascripts/regCtrl.js"></script>
+</body>
+</html>

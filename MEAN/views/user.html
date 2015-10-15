@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <title>User page</title>
+</head>
+<body ng-controller="logCtrl">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Little Blog</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="active" ng-cloak><a href="/users">{{ name }}'s page <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/logout">Sign Out</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 ng-cloak>Welcome back! {{ name }}</h1>
+            <h3>Want to say something?</h3>
+            <div ng-controller="blogCtrl">
+                <form ng-submit="postMsg()">
+                    <div class="form-group">
+                        <textarea ng-model="posting" name="posts" class="form-control" placeholder="Leave message">
+                        </textarea>
+                    </div>
+                    <button ng-disabled="posting == null || posting == ''" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
+        <div ng-controller="blogCtrl">
+            <div class="panel panel-danger" ng-show="show">
+                <div class="panel-heading">
+                    Updating the post from {{ editPost.Author }} on {{ editPost.Date }}
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <textarea ng-model="edit_content" name="edit" ng-cloak></textarea>
+                        <button type="submit" ng-click="update(editPost._id)" ng-disabled="edit_content == null || edit_content == ''" class="btn btn-xs btn-warning">Update</button>
+                        <button type="button" ng-click="show = false" class="btn btn-warning btn-xs">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-info" ng-repeat="x in post | orderBy: '-Date' | filter: {Author: name}">
+                <div class="panel-heading" ng-cloak>
+                    <p>Author: {{ x.Author }}</p>
+                    <p>Date: {{ x.Date }}</p>
+                    <form>
+                        <button type="button" ng-click="edit(x._id)" class="btn btn-warning btn-xs">Edit</button>
+                        <button type="submit" ng-click="postDel(x._id)" class="btn btn-danger btn-xs">Delete</button>
+                    </form>
+                </div>
+                <div class="panel-body" ng-cloak>
+                    {{ x.Content }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="/javascripts/myApp.js"></script>
+    <script src="/javascripts/logCtrl.js"></script>
+    <script src="/javascripts/blogCtrl.js"></script>
+</body>
+</html>
