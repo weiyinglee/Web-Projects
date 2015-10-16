@@ -1,0 +1,47 @@
+body{
+    background: url('../img/wall_paper.png');
+}
+
+#whole_pic, #watch_face, #watch_belt, #watch_heart{
+    border: 3px solid saddlebrown;
+    box-shadow: 0.5em 0.5em 0.5em #333;
+    height: 35%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+#whole_pic{
+    border: 5px solid saddlebrown;
+    height: 50%;
+}
+
+.watch_pic{
+    border-right: 2px solid saddlebrown;
+    width: 25%;
+    height: 100%;
+    margin-right: 2%;
+    float: left;
+}
+
+#watch_face, #watch_belt, #watch_heart{
+    background-color: antiquewhite;
+}
+
+#watch_face h4, #watch_belt h4, #watch_heart h4{
+    padding-top: 1%;
+    font-weight: bold;
+    font-family: DFKai-sb;
+    text-align: left;
+    color: darkred;
+}
+
+@media screen and (max-width: 768px) {
+    .watch_pic{
+        border: none;
+        width: 100%;
+    }
+    .word_describe{
+        overflow: auto;
+        visibility: hidden;
+    }
+}

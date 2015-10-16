@@ -1,0 +1,50 @@
+*{
+    font-family: DFKai-sb; /* biao kai ti */
+    box-sizing: border-box;
+}
+
+html, body, div[class^="container"]{
+    height: 100%;
+}
+
+
+#nav_section{
+    max-height: 30%;
+}
+
+#nav_section > .navbar{
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.navbar > div{
+    background: rgba(128, 0, 0, 0.9);
+    box-shadow: 0.5em 0.5em 0.5em #333;
+}
+
+.navbar .navbar-header{
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.navbar .navbar-header button {
+    background: rgba(128,0,0,0.7);
+    border: 1px solid black;
+}
+
+.navbar .navbar-toggle .icon-bar {
+    background-color: white;
+    opacity: 0.9;
+}
+
+.navbar .nav > li > a{
+    color: white;
+
+}
+.navbar .navbar-header > a{
+    color: white;
+    font-weight: bold;
+    text-shadow: #111 0.6em 0.6em 0.6em;
+}
+

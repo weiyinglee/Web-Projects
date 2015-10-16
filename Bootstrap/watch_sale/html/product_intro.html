@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/product_intro.css">
+
+    <title>臺灣旅遊紀念錶</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid" id="nav_section">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href=index.html>臺灣旅遊紀念錶</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="nav_bar">
+                <ul class="nav navbar-nav">
+                    <li class="nav_item"><a href="index.html">首頁</a></li>
+                    <li class="nav_item"><a href="product_intro.html">產品介紹</a></li>
+                    <li class="nav_item"><a href="order.html">購買商品</a></li>
+                    <li class="nav_item"><a href="contact.html">聯絡方式</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#log_in">登入</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#reg">會員註冊</a></li>
+                </ul>
+                <!-- Modals -->
+                <div class="modal fade" id="log_in">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title">登入</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="會員信箱">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="密碼">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-warning">登入</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="reg">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title">會員註冊</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="註冊信箱">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="設定新密碼">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="再次輸入新密碼">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-warning">註冊</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div id="whole_pic"></div>
+        <div id="watch_face">
+            <div id="face_pic" class="watch_pic"></div>
+            <div  id="face_word" class="word_describe">
+                <h4> 錶面設計採用簡單單純的概念, 以白色為主題並印有獨特景點中文字樣,</h4>
+                <h4> 錶面不僅耐看, 並給人一種乾淨簡潔, 不會有壓力的感覺!</h4>
+                <h4> 除了基本時鐘, 另外還提供了日期紀錄, 相當實用!</h4>
+            </div>
+        </div>
+        <div id="watch_belt">
+            <div class="watch_pic"></div>
+            <div class="word_describe">
+                <h4> 錶帶是用 GENUINE LEATHER 特殊皮質, 不易損壞且耐看,</h4>
+                <h4> 黑色的錶帶也另外襯托出白色錶面的單純與簡潔的感覺!</h4>
+            </div>
+        </div>
+        <div id="watch_heart">
+            <div class="watch_pic"></div>
+            <div class="word_describe">
+                <h4> 手錶是由電池運作, 具有潛水30米的耐性!</h4>
+                <h4> 特殊機殼保護機心, 堅固耐摔, 不易損壞!</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/product_intro.js"></script>
+</body>
+</html>

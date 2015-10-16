@@ -1,0 +1,40 @@
+body{
+    background: url('../img/xiao_liu_chu_dark.jpg') no-repeat center fixed;
+    background-size: cover;
+}
+
+.contact_section{
+    border: 3px solid black;
+    background: rgba(255, 248, 220, 0.7);
+    box-shadow: 0.5em 0.5em 0.5em #333;
+    width: 85%;
+    height: 95%;
+    margin-left: 10%;
+    padding-left: 3%;
+    overflow: auto;
+}
+
+h1{
+    font-size: 300%;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 0.3em 0.3em 0.3em #888;
+    color: darkred;
+    margin-bottom: 5%;
+}
+
+h4{
+    color: black;
+    font-family: cursive;
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+h5{
+    text-align: center;
+    text-shadow: 0.1em 0.1em 0.1em #999;
+    font-size: 200%;
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 8%;
+}

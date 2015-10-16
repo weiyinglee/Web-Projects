@@ -1,0 +1,89 @@
+body{
+    background: url("../img/xiao_liu_chu.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+
+.aside_section, .main_section, .footer_section{
+    border: 2px solid black;
+}
+
+.aside_section{
+    float: right;
+    margin: 3%;
+    width: 35%;
+    height: 65%;
+    background: rgba(250, 235, 215, 0.5);
+    border: 2px solid saddlebrown;
+}
+
+.aside_section h4{
+    margin-top: 0;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(128, 0, 0, 0.8);
+    border-bottom: 3px solid black;
+}
+.aside_section h6{
+    font-size: large;
+    font-weight: bold;
+}
+
+.main_section{
+    /* 673x430 */
+    height: 70%;
+    border: 5px solid antiquewhite;
+    box-shadow: 0.6em 0.6em 0.6em #333;
+    overflow: hidden;
+}
+
+#ali_mountain_pic, #sun_moon_lake_pic{
+    overflow: hidden;
+}
+
+#ali_mountain_pic{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    visibility: visible;
+}
+
+#sun_moon_lake_pic{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    visibility: hidden;
+}
+
+.footer_section{
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    margin-top: 2%;
+    height: 20%;
+}
+
+.footer_section h6{
+    text-align: right;
+}
+
+
+@media screen and (max-width: 768px){
+    .aside_section{
+        float: none;
+        width: 100%;
+        height: 30%;
+        overflow: auto;
+    }
+    .main_section{
+        margin: 3%;
+        width: 100%;
+        /* Change picture */
+    }
+    .footer_section{
+        overflow: auto;
+    }
+}

@@ -1,0 +1,100 @@
+body{
+    background: url('../img/wall_paper.png');
+}
+
+.product_section{
+    width: 45%;
+    height: 70%;
+    float: left;
+}
+
+.order_section{
+    width: 50%;
+    height: 90%;
+    margin-left: 48%;
+}
+
+#product_photo{
+    border: 5px solid saddlebrown;
+    box-shadow: 0.5em 0.5em 0.5em #333;
+    margin-top: 5%;
+    width: 90%;
+    height: 80%;
+    overflow: auto;
+}
+
+#price_tag{
+    font-family: DFKai-sb;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 0.2em 0.2em 0.2em #999;
+    color: darkred;
+    overflow: hidden;
+}
+
+#order_panel{
+    background-color: #feffcb;
+    border: 3px solid burlywood;
+    box-shadow: 0.5em 0.5em 0.5em #333;
+    color: black;
+    margin-top: 5%;
+    width: 95%;
+    height: 95%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .product_section{
+        float: none;
+        width: 100%;
+    }
+    .order_section{
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 5%;
+    }
+}
+
+#order_panel h1{
+    text-align: center;
+    font-family: DFKai-sb;
+    font-weight: bold;
+    padding-bottom: 2%;
+    border-bottom: 2px solid red;
+}
+
+#ali_order_num h2, #sun_moon_order_num h2{
+    margin-left: 3%;
+    font-weight: bold;
+}
+
+#ali_order_num form, #sun_moon_order_num form{
+    text-align: right;
+    margin-right: 5%;
+}
+
+input[type="text"]{
+    font-style: italic;
+    color: #888;
+}
+
+#number{
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 200%;
+    color: red;
+}
+
+#check_out{
+    text-align: center;
+    margin-top: 15%;
+}
+
+#check_out h2{
+    font-weight: bold;
+}
+
+#check_out form{
+    margin-top: 10%;
+}
+
