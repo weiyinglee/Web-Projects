@@ -73,7 +73,6 @@ router.post('/Posts/comment/:id', function(req, res){
 
 });
 
-
 /* GET users' info */
 router.get('/users_info', function(req, res){
     Users.find(function(err, data){

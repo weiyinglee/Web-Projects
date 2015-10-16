@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
 var Posts = mongoose.model('Posts');
 
-//////////GET Pages/////////////////
+//////////GET Pages///////////////
 //helper functions
 function getPage(req, res, page){
     //check the session
