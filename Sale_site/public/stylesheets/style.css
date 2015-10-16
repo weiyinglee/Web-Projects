@@ -1,0 +1,9 @@
+html, body, div[class^="container"]{
+    height: 100%;
+}
+body{
+    font-family: Microsoft JhengHei;
+    font-weight: bold;
+    background: url('../images/classical_bg.jpg') no-repeat center fixed;
+    background-size: cover;
+}

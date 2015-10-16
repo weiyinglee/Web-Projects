@@ -1,0 +1,140 @@
+html, body, div[class^="container"]{
+    height: 100%;
+}
+
+body{
+    background: url('../images/blog_BG.jpg') no-repeat center fixed;
+    background-size: cover;
+    font-family: "Microsoft JhengHei";
+}
+
+#content_wrapper{
+    background: rgba(245, 245, 220, 0.6);
+    height: auto;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.jumbotron{
+    color: #555500;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-style: italic;
+    font-family: cursive;
+    text-shadow: 0.2em 0.2em 0.2em lightgray;
+    text-align: center;
+    background: url("../images/easy_green.jpg") no-repeat center scroll;
+    background-size: cover;
+}
+
+
+#user_pic{
+    border: 1px solid black;
+    margin-left: 25%;
+    margin-bottom: 5%;
+    margin-top: 3%;
+    width: 50%;
+    height: 50%;
+}
+
+.panel{
+    margin-top: 5%;
+    margin-left: 65%;
+    text-align: center;
+    overflow: auto;
+}
+
+#back_btn{
+    margin-top: 5%;
+    margin-left: 65%;
+    text-align: center;
+}
+
+#chat_section, #myMsg, #addMsg{
+    float: left;
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 3%;
+}
+
+#chat_section h5, #myMsg h5{
+    color: darkgreen;
+    font-weight: bolder;
+}
+
+.content{
+    color: darkgreen;
+    font-weight: bold;
+    padding-left: 5%;
+}
+
+.leave_msg{
+    margin-top: 3%;
+}
+
+.guessMsg{
+    border-radius: 25px;
+    border: 1px solid black;
+    box-shadow: 0.3em 0.3em 0.3em #777;
+    background: url('../images/easy_color.jpg') no-repeat top fixed;
+    background-size: cover;
+    padding: 1% 3% 3% 3%;
+    margin-top: 3%;
+}
+
+.ownerMsg{
+    border-radius: 25px;
+    border: 1px solid darkolivegreen;
+    background: url('../images/easy_green.jpg') no-repeat center scroll;
+    background-size: cover;
+    padding: 0% 3% 3% 3%;
+    margin-top: 6%;
+}
+
+#pager_btn{
+    text-align: right;
+    margin: 3% 0 3% 10%;
+}
+
+#pager_btn .btn{
+    margin-left: 3%;
+}
+
+.nav-pills > li > a{
+    color: darkgoldenrod;
+    font-weight: bold;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: white;
+    background-color: orange;
+}
+
+@media screen and (max-width: 768px){
+    .panel{
+        margin-top: 5%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    #chat_section{
+        float: none;
+        width: 100%;
+        margin-top: 5%;
+    }
+
+    #pager_btn{
+        margin-left: 0;
+        width: auto;
+    }
+
+    #myMsg{
+        float: none;
+        width: 100%;
+    }
+
+    #addMsg{
+        float: none;
+        width: 100%;
+    }
+}

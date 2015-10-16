@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- rest css -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/log_in.css">
+
+    <title>收藏拍賣</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavBar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">收藏拍賣</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="myNavBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">首頁</a></li>
+                    <li><a href="/about">關於我們</a></li>
+                    <li><a href="/product">本店商品</a></li>
+                    <li><a href="/blog">留言板</a></li>
+                    <li><a href="/contact">聯絡方式</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">本店連結 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Facebook 臉書專頁</a></li>
+                            <li><a href="#">Instagram 相簿連結</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Yahoo 奇摩拍賣</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/contact">直接聯絡賣方</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container" ng-controller="logCtrl">
+        <div class="jumbotron">
+            <div class="page-header">
+                <h1>會員登入</h1>
+                <h4>還不是會員? 立即註冊成為我們的會員吧!</h4>
+            </div>
+            <a class="btn btn-warning btn-lg" href="/reg" role="button">立即註冊</a>
+        </div>
+
+        <!-- Alert error -->
+        <div class="alert alert-danger" role="alert" ng-show="error">
+            <strong>{{ errorMsg }}</strong>
+        </div>
+
+        <form ng-submit="logIn()" method="post">
+            <div class="form-group">
+                <label for="logName">輸入用戶名稱或是信箱</label>
+                <input type="text" ng-model="log_name" class="form-control" id="logName" name="user_name" placeholder="用戶名稱/信箱">
+            </div>
+            <div class="form-group">
+                <label for="logPw">輸入密碼</label>
+                <input type="password" ng-model="log_pw" class="form-control" id="logPw" name="user_pw" placeholder="密碼">
+            </div>
+            <button type="submit" class="btn btn-success">登入</button>
+            <a class="btn btn-success" href="#" role="button">忘記密碼?</a>
+        </form>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- angularJs -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <!-- Bootstrap -->
+    <script src="/javascripts/navbar.js"></script>
+    <script src="/javascripts/myApp.js"></script>
+    <script src="/javascripts/logCtrl.js"></script>
+</body>
+</html>

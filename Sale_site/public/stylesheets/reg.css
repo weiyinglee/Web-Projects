@@ -1,0 +1,35 @@
+.jumbotron {
+    margin: 1%;
+    border: 3px solid brown;
+    background: url('../images/light_wall_paper.jpg') no-repeat center scroll;
+    background-size: cover;
+    box-shadow: 0.5em 0.5em 0.5em #888;
+}
+
+.jumbotron > .page-header > h1{
+    margin-bottom: 3%;
+    color: saddlebrown;
+    font-family: monospace;
+    font-weight: bold;
+    text-shadow: 0.2em 0.2em 0.2em lightgray;
+}
+
+.jumbotron > .page-header > h4 {
+    margin-bottom: 1%;
+    margin-left: 10%;
+    color: saddlebrown;
+    font-family: "Microsoft JhengHei";
+    font-style: italic;
+}
+
+form{
+    margin: 3%;
+    padding: 3%;
+    color: darkgreen;
+    font-weight: bold;
+    background: url('../images/easy_green.jpg') no-repeat center fixed;
+    background-size: cover;
+    border: 5px solid lightgreen;
+    border-radius: 25px;
+    box-shadow: 0.5em 0.5em 0.5em #999;
+}

@@ -1,0 +1,70 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+</head>
+<body>
+    <div class="container">
+        <div id="brand_pic"></div>
+        <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavBar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="myNavBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">首頁</a></li>
+                    <li><a href="/about">關於我們</a></li>
+                    <li><a href="/product">本店商品</a></li>
+                    <li><a href="/blog">留言板</a></li>
+                    <li><a href="/contact">聯絡方式</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">本店連結 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Facebook 臉書專頁</a></li>
+                            <li><a href="#">Instagram 相簿連結</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Yahoo 奇摩拍賣</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/contact">直接聯絡賣方</a></li>
+                        </ul>
+                    </li>
+                    <% if( !logIn ){ %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員用戶<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/login">登入</a></li>
+                                <li><a href="/reg">立即註冊</a></li>
+                            </ul>
+                        </li>
+                    <% }else{ %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user.Username %><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">編輯個人資料</a></li>
+                                <li><a href="#">更改密碼</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">購物清單</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout/login">登出</a></li>
+                            </ul>
+                        </li>
+                    <% }%>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="找尋商品">
+                    </div>
+                    <button type="submit" class="btn btn-success">搜尋</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
+</body>
