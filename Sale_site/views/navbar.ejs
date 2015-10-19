@@ -1,9 +1,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- angularJs -->
+    <script src="/javascripts/myApp.js"></script>
+    <script src="/javascripts/logCtrl.js"></script>
 </head>
-<body>
-    <div class="container">
+<body ng-app="myApp">
+    <div class="container" ng-controller="logCtrl">
         <div id="brand_pic"></div>
         <nav class="navbar navbar-default">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,27 +39,19 @@
                             <li><a href="/contact">直接聯絡賣方</a></li>
                         </ul>
                     </li>
-                    <% if( !logIn ){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員用戶<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/login">登入</a></li>
-                                <li><a href="/reg">立即註冊</a></li>
-                            </ul>
-                        </li>
-                    <% }else{ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user.Username %><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">編輯個人資料</a></li>
-                                <li><a href="#">更改密碼</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">購物清單</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/logout/login">登出</a></li>
-                            </ul>
-                        </li>
-                    <% }%>
+                    <li class="dropdown" ng-cloak>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span ng-hide="login">會員用戶</span><span ng-show="login">{{ username }}</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-hide="login"><a href="/login">登入</a></li>
+                            <li ng-hide="login"><a href="/reg">立即註冊</a></li>
+                            <li ng-show="login"><a href="#">編輯個人資料</a></li>
+                            <li ng-show="login"><a href="#">更改密碼</a></li>
+                            <li role="separator" class="divider" ng-show="login"></li>
+                            <li ng-show="login"><a href="#">購物清單</a></li>
+                            <li role="separator" class="divider" ng-show="login"></li>
+                            <li ng-show="login"><a href="/logout/login">登出</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">

@@ -11,108 +11,85 @@
     <title>收藏拍賣</title>
 </head>
 <body ng-controller="blogCtrl">
-    <div class="jumbotron">
-        <% if( !logIn ){ %>
-            <h1><u>~Welcome To Awesome Chat Board~</u></h1>
-        <%}else{ %>
-            <h1><u>~<%= user.Username %>'s Awesome Chat Board~</u></h1>
-        <%}%>
+    <div class="jumbotron" ng-controller="logCtrl">
+        <!-- not login -->
+        <h1 ng-hide="login">歡迎來到留言板區<small>立即登入即可留言!</small></h1>
+        <!-- login -->
+        <h1 ng-show="login" ng-cloak>歡迎回來! {{ username }}</h1>
     </div>
-    <div ng-controller="logCtrl">
+    <div>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
-                <!--==== Condition Parts =====-->
-                <% if( !logIn ){%>
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/">收藏拍賣</a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">本店連結<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Facebook 臉書專頁</a></li>
-                                    <li><a href="#">Instagram 相簿連結</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Yahoo 奇摩拍賣</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/contact">直接聯絡賣方</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <form class="navbar-form navbar-right" role="search" ng-submit="logIn()">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">收藏拍賣</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown" ng-cloak ng-show="login">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">主目錄<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/">首頁</a></li>
+                                <li><a href="/about">關於我們</a></li>
+                                <li><a href="/product">本店商品</a></li>
+                                <li><a href="/contact">聯絡方式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">本店連結<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Facebook 臉書專頁</a></li>
+                                <li><a href="#">Instagram 相簿連結</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Yahoo 奇摩拍賣</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/contact">直接聯絡賣方</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" ng-model="search.PostTitle" class="form-control" name="search" placeholder="搜尋文章標題">
+                            </div>
+                        </form>
+                    </ul>
+                    <div ng-controller="logCtrl">
+                        <form class="navbar-form navbar-right" role="search" ng-submit="logIn()" ng-hide="login">
                             <div class="form-group">
                                 <input type="text" ng-model="log_name" class="form-control" name="user_name" placeholder="用戶名稱/信箱">
                                 <input type="password" ng-model="log_pw" class="form-control" name="user_pw" placeholder="密碼">
                             </div>
-                            <button type="submit" class="btn btn-success">登入</button>
+                            <button type="submit" class="btn btn-success" ng-disabled="log_name == '' || log_pw == ''">登入</button>
                             <a href="#" class="btn btn-info" role="button">忘記密碼?</a>
                             <a href="/reg" class="btn btn-warning" role="button">立即註冊</a>
                         </form>
-                    </div><!-- /.navbar-collapse -->
-                <% }else{ %>
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/">收藏拍賣</a>
                     </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="navbar-collapse" id="myNavBar2">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">主目錄<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/">首頁</a></li>
-                                    <li><a href="/about">關於我們</a></li>
-                                    <li><a href="/product">本店商品</a></li>
-                                    <li><a href="/contact">聯絡方式</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">本店連結 <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Facebook 臉書專頁</a></li>
-                                    <li><a href="#">Instagram 相簿連結</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Yahoo 奇摩拍賣</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/contact">直接聯絡賣方</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <form class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                    <input type="text" ng-model="search.PostTitle" class="form-control" name="search" placeholder="搜尋文章標題">
-                                </div>
-                            </form>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                <% }%>
+
+                </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <!-- Alert error -->
-        <div class="container">
-            <div class="alert alert-danger" role="alert" ng-show="error">
-                <strong>{{ errorMsg }}</strong>
-            </div>
-        </div>
     </div>
 
-    <!--===== Condition Parts ======-->
-    <% if( !logIn ) {%>
-        <div class="container" id="content_wrapper">
-            <!-- Chat bubble -->
-            <div id="chat_section">
+    <div class="container" id="content_wrapper">
+        <!-- Chat bubble -->
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#chat_section">所有留言</a></li>
+            <li ng-show="login"><a data-toggle="pill" href="#myMsg">我的留言</a></li>
+            <li ng-show="login"><a data-toggle="pill" href="#addMsg">新增留言</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="chat_section" class="tab-pane fade in active">
+                <div class="well" ng-show="blogList.length == 0">目前尚無任何文章</div>
                 <div class="guessMsg" ng-repeat="posts in blogList | filter: search | orderBy: '-Date'
-                                                | limitTo: preCount - blogList.length | limitTo: 3">
+                                                 | limitTo: preCount - blogList.length | limitTo: 3">
                     <div class="page-header">
                         <h5>標題: {{ posts.PostTitle }}</h5>
                         <h5>留言者: {{ posts.Author }}</h5>
@@ -130,148 +107,90 @@
                             {{ msg.Comment }}
                         </div>
                     </div>
-                </div>
-                <div id="pager_btn">
-                    <div type="button" ng-hide="preCount == 0 || blogList.length == 0" ng-click="preCount = preCount - 3" class="btn btn-info" role="button">上一頁</div>
-                    <div type="button" ng-hide="preCount == blogList.length - 3 || blogList.length == 0" ng-click="preCount = preCount + 3" class="btn btn-primary" role="button">下一頁</div>
-                </div>
-            </div>
-            <!-- Aside panels -->
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title">主選單</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        <a href="/" class="list-group-item">首頁</a>
-                        <a href="/about" class="list-group-item">關於我們</a>
-                        <a href="/product" class="list-group-item">本店商品</a>
-                        <a href="/contact" class="list-group-item">聯絡方式</a>
+                    <div class="leave_msg" ng-show="login">
+                        <button style="margin-bottom: 2%;" type="button" class="btn btn-success btn-sm" ng-click="show = !show; $parent.comment = ''">
+                            我要留言
+                        </button>
+                        <form method="post" ng-submit="commentPost(posts._id)" ng-show="show">
+                            <div class="form-group">
+                                <textarea class="form-control" ng-model="$parent.comment" rows="2" name="comment" placeholder="我有話要說" style="resize: vertical"></textarea>
+                            </div>
+                            <button type="submit" ng-disabled="comment == ''" class="btn btn-success">發言</button>
+                        </form>
                     </div>
                 </div>
+                <div id="pager_btn" ng-hide="blogList.length == 0">
+                    <div type="button" ng-hide="preCount <= 0" ng-click="preCount = preCount - 3" class="btn btn-info" role="button">上一頁</div>
+                    <div type="button" ng-hide="preCount >= blogList.length - 3" ng-click="preCount = preCount + 3" class="btn btn-primary" role="button">下一頁</div>
+                </div>
             </div>
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title">搜尋文章</h3>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" ng-model="search.PostTitle" class="form-control" name="search" placeholder="搜尋文章標題">
+            <div id="myMsg" class="tab-pane fade">
+                <div class="well" ng-show="myBlogList.length == 0">目前尚無任何文章</div>
+                <div class="guessMsg" ng-repeat="myPosts in myBlogList | filter: search | orderBy: '-Date'
+                                                 | limitTo: myCount - myBlogList.length | limitTo: 3">
+                    <div class="page-header">
+                        <h5>標題: {{ myPosts.PostTitle }}</h5>
+                        <h5>日期: {{ myPosts.Date }}</h5>
+                    </div>
+                    <div class="content">
+                        {{ myPosts.Message }}
+                    </div>
+                    <div class="ownerMsg" ng-repeat="myMsg in myPosts.Comment | orderBy: 'Date'">
+                        <div class="page-header">
+                            <h5>留言者: {{ myMsg.Author }}</h5>
+                            <h5>日期: {{ myMsg.Date }}</h5>
                         </div>
-                    </form>
+                        <div class="content">
+                            {{ myMsg.Comment }}
+                        </div>
+                    </div>
                 </div>
+                <div id="pager_btn" ng-hide="myBlogList.length == 0">
+                    <div type="button" ng-hide="myCount <= 0" ng-click="myCount = myCount - 3" class="btn btn-info" role="button">上一頁</div>
+                    <div type="button" ng-hide="myCount >= myBlogList.length - 3" ng-click="myCount = myCount + 3" class="btn btn-primary" role="button">下一頁</div>
+                </div>
+            </div>
+            <div id="addMsg" class="tab-pane fade">
+                <form ng-submit="addPost()" method="post">
+                    <div class="form-group">
+                        <label for="#msg_title">文章標題</label>
+                        <input class="form-control" ng-model="post_title" id="msg_title" type="text" name="title" placeholder="標題">
+                    </div>
+                    <div class="form-group">
+                        <label for="#msg_content">文章內容</label>
+                        <textarea class="form-control" ng-model="post_msg" id="msg_content" rows="10" name="msg" placeholder="留言.."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning" ng-disabled="post_title == '' || post_msg == '' ">發佈文章</button>
+                </form>
             </div>
         </div>
-    <% }else{ %>
-        <div class="container" id="content_wrapper">
-            <!-- Chat bubble -->
-            <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#chat_section">所有留言</a></li>
-                <li><a data-toggle="pill" href="#myMsg">我的留言</a></li>
-                <li><a data-toggle="pill" href="#addMsg">新增留言</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="chat_section" class="tab-pane fade in active">
-                    <!-- Alert error -->
-                    <div class="alert alert-danger" role="alert" ng-show="commentError">
-                        <strong>{{ commentErrorMsg }}</strong>
-                    </div>
-                    <div class="guessMsg" ng-repeat="posts in blogList | filter: search | orderBy: '-Date'
-                                                     | limitTo: preCount - blogList.length | limitTo: 3">
-                        <div class="page-header">
-                            <h5>標題: {{ posts.PostTitle }}</h5>
-                            <h5>留言者: {{ posts.Author }}</h5>
-                            <h5>日期: {{ posts.Date }}</h5>
-                        </div>
-                        <div class="content">
-                            {{ posts.Message }}
-                        </div>
-                        <div class="ownerMsg" ng-repeat="msg in posts.Comment | orderBy: 'Date'">
-                            <div class="page-header">
-                                <h5>留言者: {{ msg.Author }}</h5>
-                                <h5>日期: {{ msg.Date }}</h5>
-                            </div>
-                            <div class="content">
-                                {{ msg.Comment }}
-                            </div>
-                        </div>
-                        <div class="leave_msg">
-                            <form method="post" ng-submit="commentPost(posts._id)">
-                                <div class="form-group">
-                                    <textarea class="form-control" ng-model="$parent.comment" rows="2" name="comment" placeholder="我有話要說" style="resize: vertical"></textarea>
-                                </div>
-                                <button type="submit" ng-disabled="comment == ''" class="btn btn-success">發言</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div id="pager_btn">
-                        <div type="button" ng-hide="preCount == 0 || posts.length == 0" ng-click="preCount = preCount - 3" class="btn btn-info" role="button">上一頁</div>
-                        <div type="button" ng-hide="preCount == blogList.length - 3 || posts.length == 0" ng-click="preCount = preCount + 3" class="btn btn-primary" role="button">下一頁</div>
-                    </div>
-                </div>
-                <div id="myMsg" class="tab-pane fade">
-                    <div class="guessMsg" ng-repeat="myPosts in myBlogList | filter: search | orderBy: '-Date'
-                                                     | limitTo: myCount - myBlogList.length | limitTo: 3">
-                        <div class="page-header">
-                            <h5>標題: {{ myPosts.PostTitle }}</h5>
-                            <h5>日期: {{ myPosts.Date }}</h5>
-                        </div>
-                        <div class="content">
-                            {{ myPosts.Message }}
-                        </div>
-                        <div class="ownerMsg" ng-repeat="myMsg in myPosts.Comment | orderBy: 'Date'">
-                            <div class="page-header">
-                                <h5>留言者: {{ myMsg.Author }}</h5>
-                                <h5>日期: {{ myMsg.Date }}</h5>
-                            </div>
-                            <div class="content">
-                                {{ myMsg.Comment }}
-                            </div>
-                        </div>
-                    </div>
-                    <div id="pager_btn">
-                        <div type="button" ng-hide="myCount <= 0 || myBlogList.length == 0" ng-click="myCount = myCount - 3" class="btn btn-info" role="button">上一頁</div>
-                        <div type="button" ng-hide="myCount >= myBlogList.length - 3 || myBlogList.length == 0" ng-click="myCount = myCount + 3" class="btn btn-primary" role="button">下一頁</div>
-                    </div>
-                </div>
-                <div id="addMsg" class="tab-pane fade">
-                    <!-- Alert error -->
-                    <div class="alert alert-danger" role="alert" ng-show="postError">
-                        <strong>{{ postErrorMsg }}</strong>
-                    </div>
-                    <form ng-submit="addPost()" method="post">
-                        <div class="form-group">
-                            <label for="#msg_title">文章標題</label>
-                            <input class="form-control" ng-model="post_title" id="msg_title" type="text" name="title" placeholder="標題">
-                        </div>
-                        <div class="form-group">
-                            <label for="#msg_content">文章內容</label>
-                            <textarea class="form-control" ng-model="post_msg" id="msg_content" rows="10" name="msg" placeholder="留言.."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-warning">發佈文章</button>
-                    </form>
-                </div>
-            </div>
 
-            <!--Aside panels -->
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><%= user.Username %>的留言板</h3>
+        <!-- Aside panels -->
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <!-- not login -->
+                <h3 class="panel-title" ng-hide="login">主選單</h3>
+                <!-- login -->
+                <h3 class="panel-title" ng-show="login" ng-cloak>{{ username }}的留言板</h3>
+            </div>
+            <div class="panel-body">
+                <div id="user_pic" ng-show="login">
                 </div>
-                <div class="panel-body">
-                    <div id="user_pic">
-                    </div>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">編輯個人資料</a>
-                        <a href="#" class="list-group-item">更改密碼</a>
-                        <a href="#" class="list-group-item">購物清單</a>
-                        <a href="/logout/blog" class="list-group-item">登出</a>
-                    </div>
+                <div class="list-group">
+                    <!-- not login -->
+                    <a href="/" class="list-group-item" ng-hide="login">首頁</a>
+                    <a href="/about" class="list-group-item" ng-hide="login">關於我們</a>
+                    <a href="/product" class="list-group-item" ng-hide="login">本店商品</a>
+                    <a href="/contact" class="list-group-item" ng-hide="login">聯絡方式</a>
+                    <!-- login -->
+                    <a href="#" class="list-group-item" ng-show="login">編輯個人資料</a>
+                    <a href="#" class="list-group-item" ng-show="login">更改密碼</a>
+                    <a href="#" class="list-group-item" ng-show="login">購物清單</a>
+                    <a href="/logout/blog" class="list-group-item" ng-show="login">登出</a>
                 </div>
             </div>
         </div>
-    <%}%>
+    </div>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- angularJs -->

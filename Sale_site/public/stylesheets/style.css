@@ -7,3 +7,6 @@ body{
     background: url('../images/classical_bg.jpg') no-repeat center fixed;
     background-size: cover;
 }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}

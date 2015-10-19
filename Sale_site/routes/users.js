@@ -73,6 +73,30 @@ router.post('/Posts/comment/:id', function(req, res){
 
 });
 
+/* GET users' login status */
+router.get('/login_status', function(req, res){
+    if(req.session && req.session.user){
+        Users.findOne({ Email: req.session.user.Email }, function(err, user){
+            if(user){
+                res.json({
+                    username: user.Username,
+                    login: true
+                });
+            }else{
+                res.json({
+                    username: '',
+                    login: false
+                });
+            }
+        });
+    }else{
+        res.json({
+            username: '',
+            login: false
+        });
+    }
+});
+
 /* GET users' info */
 router.get('/users_info', function(req, res){
     Users.find(function(err, data){
@@ -93,7 +117,5 @@ router.get('/my_posts', function(req, res){
         res.json(data);
     });
 });
-
-
 
 module.exports = router;

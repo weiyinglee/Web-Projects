@@ -1,13 +1,18 @@
 //Controller for blog
 app.controller('blogCtrl', function($scope, $http){
 
+    $scope.username = '';
+    $scope.login = false;
     $scope.post_title = '';
     $scope.post_msg = '';
-    $scope.postError = false;
-    $scope.postErrorMsg = '';
     $scope.comment = '';
     $scope.preCount = 0;
     $scope.myCount = 0;
+
+    $http.get('/users/login_status').success(function(response){
+        $scope.username = response.username;
+        $scope.login = response.login;
+    });
 
     $http.get('/users/user_posts').success(function(response){
         $scope.blogList = response;
@@ -18,20 +23,14 @@ app.controller('blogCtrl', function($scope, $http){
     });
 
     $scope.addPost = function(){
-        //check if the content is empty
-        if($scope.post_title == '' || $scope.post_msg == ''){
-            $scope.postError = true;
-            $scope.postErrorMsg = 'Fields can not be empty!';
-        }else{
-            //POST data into DB
-            var data = {
-                PostTitle: $scope.post_title,
-                Message: $scope.post_msg
-            };
-            $http.post('/users/Posts/post', data).success(function(){
-                location.reload();
-            });
-        }
+        //POST data into DB
+        var data = {
+            PostTitle: $scope.post_title,
+            Message: $scope.post_msg
+        };
+        $http.post('/users/Posts/post', data).success(function(){
+            location.reload();
+        });
     };
 
     $scope.commentPost = function(id){

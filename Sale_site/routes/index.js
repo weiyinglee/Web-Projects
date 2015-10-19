@@ -7,87 +7,73 @@ var Posts = mongoose.model('Posts');
 
 //////////GET Pages///////////////
 //helper functions
-function getPage(req, res, page){
+function checkLogIn(req, res, next){
     //check the session
     if(req.session && req.session.user){
-        //if there is a session , check the session
+        //if there is a session, check the session
+        Users.findOne({ Email: req.session.user.Email }, function(err, user){
+           if(user){
+               //if the user is already signed in, redirect to other pages
+               res.redirect('/');
+           }else{
+               next();
+           }
+        });
+    }else{
+        next();
+    }
+}
+
+function requireLogIn(req, res, next){
+    //check the session
+    if(req.session && req.session.user){
+        //if there is a session, check the session
         Users.findOne({ Email: req.session.user.Email }, function(err, user){
             if(!user){
-                //the session is not for the right user, go to the unlogged in page
-                res.locals.logIn = false;
-                res.render(page);
+                // if the user is not yet logged in, redirect to login page
+                res.redirect('/login');
             }else{
-                // the session is for the right user
-                if(page == 'reg' || page == 'log_in'){
-                    //if user typed out url for going to reg or log_in page, redirect to index
-                    res.redirect('/user/' + user.Username + '/index');
-                }else{
-                    res.redirect('/user/' + user.Username + '/' + page);
-                }
+                next();
             }
         });
     }else{
-        res.locals.logIn = false;
-        res.render(page);
+        next();
     }
 }
 
 /* GET home page. */
 router.get('/', function(req, res){
-    getPage(req, res, 'index')
+    res.render('index');
 });
 
 /* GET reg page */
-router.get('/reg', function(req, res) {
-    getPage(req, res, 'reg');
+router.get('/reg', checkLogIn, function(req, res) {
+    res.render('reg');
 });
 
 /* GET log_in page */
-router.get('/login', function(req, res) {
-    getPage(req, res, 'log_in');
+router.get('/login', checkLogIn, function(req, res) {
+    res.render('log_in');
 });
 
 /* GET about page. */
 router.get('/about', function(req, res) {
-    getPage(req, res, 'about');
+    res.render('about');
 });
 
 /* GET product page. */
 router.get('/product', function(req, res) {
-    getPage(req, res, 'product');
+    res.render('product');
 });
 
 /* GET blog page. */
 router.get('/blog', function(req, res) {
-    getPage(req, res, 'blog');
+    res.render('blog');
 });
 
 /* GET contact page. */
 router.get('/contact', function(req, res) {
-    getPage(req, res, 'contact');
-});
-
-/* GET user page */
-router.get('/user/:name/:page', function(req, res){
-
-    var directPage = req.params.page;
-
-    //check the session
-    if(req.session && req.session.user){
-        Users.findOne({ Email: req.session.user.Email }, function(err, user){
-            if(!user){
-                //the session is not for the right user, back to login page
-                res.redirect('/login');
-            }else{
-                // the session is for the right user
-                res.locals.user = user;
-                res.locals.logIn = true;
-                res.render(directPage);
-            }
-        });
-    }else{
-        res.redirect('/login');
-    }
+    res.render('contact');
 });
 
 /* GET logout section */
