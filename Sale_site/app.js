@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var db = require('./routes/db');
 var sessions = require('client-sessions');
+var bcrypt = require('bcryptjs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

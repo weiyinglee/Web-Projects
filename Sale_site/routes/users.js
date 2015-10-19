@@ -5,14 +5,19 @@ var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
 var Posts = mongoose.model('Posts');
 
+var bcrypt = require('bcryptjs');
+
 /* APIs */
 //Authentication (reg)
 router.post('/Authentication/reg', function(req, res) {
+
+    var hash = bcrypt.hashSync(req.body.Password, bcrypt.genSaltSync(10));
+
     //Save to SaleSiteDB
     var newUser = new Users({
         Email: req.body.Email,
         Username: req.body.Username,
-        Password: req.body.Password
+        Password: hash
     });
     newUser.save(function(err){
         if(err) return console.log(err + ', failed to save');
@@ -27,11 +32,53 @@ router.post('/Authentication/reg', function(req, res) {
 
 /* Authentication (login) */
 router.post('/Authentication/login', function(req, res) {
-    //set session & redirect
-    req.session.user = req.body;
-    res.json({
-        Message: 'Successfully Login!'
+
+    Users.findOne({ Username: req.body.Username }, function(err, user){
+        if(user){
+            if(bcrypt.compareSync(req.body.Password, user.Password)){
+                //set session & redirect
+                req.session.user = user;
+                res.json({
+                    login: true,
+                    username: user.Username,
+                    Message: 'Successfully Login!'
+                });
+            }else{
+                res.json({
+                    login: false,
+                    username: '',
+                    Message: 'Invalid Password!'
+                });
+            }
+        }else{
+            Users.findOne({ Email: req.body.Username }, function(err, user){
+                if(user){
+                    if(bcrypt.compareSync(req.body.Password, user.Password)){
+                        //set session & redirect
+                        req.session.user = user;
+                        res.json({
+                            login: true,
+                            username: user.Username,
+                            Message: 'Successfully Login!'
+                        });
+                    }else{
+                        res.json({
+                            login: false,
+                            username: '',
+                            Message: 'Invalid Password!'
+                        });
+                    }
+                }else{
+                    res.json({
+                        login: false,
+                        username: '',
+                        Message: 'Username/Email is not found!'
+                    });
+                }
+            });
+        }
     });
+
 });
 
 /* Add Posts */
