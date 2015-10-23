@@ -6,6 +6,10 @@ app.controller('blogCtrl', function($scope, $http){
     $scope.post_title = '';
     $scope.post_msg = '';
     $scope.comment = '';
+    $scope.edit_post = '';
+    $scope.edit_title = '';
+    $scope.editing = false;
+    $scope.delConfirm = false;
     $scope.preCount = 0;
     $scope.myCount = 0;
 
@@ -40,6 +44,25 @@ app.controller('blogCtrl', function($scope, $http){
         };
 
         $http.post('/users/Posts/comment/' + id, data).success(function(response){
+            location.reload();
+        });
+    };
+
+    $scope.delPost = function(id){
+
+        $http.delete('/users/Posts/comment/deletion/' + id).success(function(response) {
+            location.reload();
+        });
+
+    };
+
+    $scope.editPost = function(id){
+
+        var data = {
+            Post: $scope.edit_post
+        };
+
+        $http.put('/users/Posts/comment/update/' + id, data).success(function(response){
             location.reload();
         });
     };

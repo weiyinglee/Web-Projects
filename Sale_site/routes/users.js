@@ -120,6 +120,33 @@ router.post('/Posts/comment/:id', function(req, res){
 
 });
 
+/* PUT update one post */
+router.put('/Posts/comment/update/:id', function(req, res){
+
+    var id = req.params.id;
+
+    Posts.update({ _id: id },
+        { $set: {
+            Message: req.body.Post,
+            Date: new Date()
+    }}, function(err){
+        if(err) return res.json({ Message: 'Failed to update post'});
+        res.json({Message: 'Successfully to update post'});
+    });
+
+});
+
+/* Delete the one Post */
+router.delete('/Posts/comment/deletion/:id', function(req, res){
+
+    var id = req.params.id;
+
+    Posts.remove({_id: id}, function(err){
+        if(err) return res.json({Message: 'Failed to delete the post'});
+        res.json({Message: 'Successfully delete the post'});
+    });
+});
+
 /* GET users' login status */
 router.get('/login_status', function(req, res){
     if(req.session && req.session.user){

@@ -108,14 +108,15 @@
                         </div>
                     </div>
                     <div class="leave_msg" ng-show="login">
-                        <button style="margin-bottom: 2%;" type="button" class="btn btn-success btn-sm" ng-click="show = !show; $parent.comment = ''">
+                        <button style="margin-bottom: 2%;" type="button" class="btn btn-success btn-sm" ng-hide="show" ng-click="show = true; $parent.comment = ''">
                             我要留言
                         </button>
                         <form method="post" ng-submit="commentPost(posts._id)" ng-show="show">
                             <div class="form-group">
-                                <textarea class="form-control" ng-model="$parent.comment" rows="2" name="comment" placeholder="我有話要說" style="resize: vertical"></textarea>
+                                <textarea class="form-control" ng-model="$parent.comment" rows="2" placeholder="我有話要說" style="resize: vertical"></textarea>
                             </div>
-                            <button type="submit" ng-disabled="comment == ''" class="btn btn-success">發言</button>
+                            <button type="submit" ng-disabled="$parent.comment == ''" class="btn btn-success">發言</button>
+                            <button type="button" ng-click="show = false" class="btn btn-success">取消</button>
                         </form>
                     </div>
                 </div>
@@ -128,19 +129,30 @@
                 <div class="well" ng-show="myBlogList.length == 0">目前尚無任何文章</div>
                 <div class="guessMsg" ng-repeat="myPosts in myBlogList | filter: search | orderBy: '-Date'
                                                  | limitTo: myCount - myBlogList.length | limitTo: 3">
+                    <div role="button" class="btn btn-xs btn-warning" ng-hide="editing" ng-click="editing = true; $parent.edit_post = ''">修改留言</div>
+                    <div role="button" class="btn btn-xs btn-danger"  ng-hide="delConfirm || editing" ng-click="delConfirm = true">刪除留言</div>
+                    <div role="button" class="btn btn-xs btn-danger" ng-show="delConfirm && !editing" ng-click="delPost(myPosts._id)">確定刪除?</div>
+                    <div role="button" class="btn btn-xs btn-danger" ng-show="delConfirm && !editing" ng-click="delConfirm = false">取消</div>
                     <div class="page-header">
-                        <h5>標題: {{ myPosts.PostTitle }}</h5>
-                        <h5>日期: {{ myPosts.Date }}</h5>
+                        <h5 ng-cloak>標題: {{ myPosts.PostTitle }}</h5>
+                        <h5 ng-cloak>日期: {{ myPosts.Date }}</h5>
                     </div>
                     <div class="content">
-                        {{ myPosts.Message }}
+                        <span ng-hide="editing" ng-cloak>{{ myPosts.Message }}</span>
+                        <form ng-show="editing">
+                            <div class="form-group">
+                                <textarea class="form-control" ng-model="$parent.edit_post" rows="2" placeholder="更改文章" style="resize: vertical"></textarea>
+                            </div>
+                            <button ng-disabled="$parent.edit_post == ''" class="btn btn-sm btn-warning" ng-click="editPost(myPosts._id)">修改</button>
+                            <button ng-click="editing = false" class="btn btn-sm btn-warning">取消</button>
+                        </form>
                     </div>
                     <div class="ownerMsg" ng-repeat="myMsg in myPosts.Comment | orderBy: 'Date'">
                         <div class="page-header">
-                            <h5>留言者: {{ myMsg.Author }}</h5>
-                            <h5>日期: {{ myMsg.Date }}</h5>
+                            <h5 ng-cloak>留言者: {{ myMsg.Author }}</h5>
+                            <h5 ng-cloak>日期: {{ myMsg.Date }}</h5>
                         </div>
-                        <div class="content">
+                        <div class="content" ng-cloak>
                             {{ myMsg.Comment }}
                         </div>
                     </div>
